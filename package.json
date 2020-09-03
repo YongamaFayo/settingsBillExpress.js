@@ -16,5 +16,8 @@
     "express-handlebars": "^5.1.0",
     "moment": "^2.27.0",
     "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.3"
   }
 }
