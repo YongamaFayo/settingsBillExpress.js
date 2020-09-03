@@ -49,7 +49,7 @@ module.exports = function BillWithSetting() {
 
     }
 
-    function actionList (){
+    function actions() {
 
         return actionList
     }
@@ -65,14 +65,10 @@ module.exports = function BillWithSetting() {
         for (let index = 0; index < actionList.length; index++) {
             const action = actionList[index];
 
-
-
             // check if the current entry's type is equal to actionType
             // if it is add it to the newly created list
 
             if (action.type === actionType) {
-
-
                 // if the loop is done...
                 // return the values in the newly created list
                 filteredActions.push(action);
@@ -84,8 +80,6 @@ module.exports = function BillWithSetting() {
         return filteredActions;
 
     }
-
-
 
 
     function hasReachedWarningLevel() {
@@ -176,12 +170,21 @@ module.exports = function BillWithSetting() {
         hasReachedCriticalLevel,
         totalClassName,
         actionsFor,
-        actionList
+        actions
 
 
 
     }
 }
+
+
+
+
+
+
+// module.exports = function BillWithSetting() {
+
+
 
 
 // module.exports = function BillWithSetting() {

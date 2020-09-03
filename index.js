@@ -54,19 +54,13 @@ app.post('/action', function (req, res) {
 app.get('/actions', function (req, res) {
 
     // console.log(settingsBill.totalClassName());
-    var actionList = settingsBill.recordAction()
-
+    var actionList = settingsBill.actions()
+console.log(actionList)
     for (var key of actionList) {
         key.ago = moment(key.timestamp).fromNow()
     }
-    res.render('actions', { 
-        
-        actions: settingsBill.recordAction(),
-        actions:settingsBill.actionList(),
-
-    
-    
-
+    res.render('actions', {   
+        actions:  actionList
     });
 
 });
@@ -77,14 +71,12 @@ app.get('/actions/:type', function (req, res) {
 
     const actionType = req.params.type;
 
-    const actionLists = settingsBill.recordAction()
-
-    for (const key of actionType) {
+    const actionLists = settingsBill.actionsFor(actionType)
+    for (const key of actionLists) {
         key.ago = moment(key.timestamp).fromNow()
     }
 
     res.render('actions', {
-        actions: settingsBill.recordAction(),
 
         actions:actionLists
 
