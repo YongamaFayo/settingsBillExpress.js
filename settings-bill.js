@@ -29,25 +29,25 @@ module.exports = function BillWithSetting() {
 
     function recordAction(action) {
         var cost = 0;
-        if (action === 'sms') {
+        if (!hasReachedCriticalLevel()) {
+            if (action === 'sms') {
 
-            SmsCostTotal += smsCost;
-            cost = smsCost;
+                SmsCostTotal += smsCost;
+                cost = smsCost;
+            }
+            else if (action === 'call') {
+                callCostTotal += callCost;
+                cost = callCost;
+            }
+    
+            actionList.push({
+                type: action,
+                cost,
+                timestamp: new Date()
+            });    
         }
-        else if (action === 'call') {
-            callCostTotal += callCost;
-            cost = callCost;
-        }
-
-        actionList.push({
-            type: action,
-            cost,
-            timestamp: new Date()
-        });
-
-
-
     }
+
 
     function actions() {
 
@@ -147,12 +147,12 @@ module.exports = function BillWithSetting() {
 
 
     function totals() {
-        let smsTotal = smsTotalBill()
-        let callTotal = callTotalBill()
+        let smsTotal = smsTotalBill().toFixed(2)
+        let callTotal = callTotalBill().toFixed(2)
         return {
             smsTotal,
             callTotal,
-            grandTotal: getTotalCost(),
+            grandTotal: getTotalCost().toFixed(2),
             colour: totalClassName()
         }
     }
