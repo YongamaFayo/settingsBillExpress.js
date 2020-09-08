@@ -29,6 +29,7 @@ module.exports = function BillWithSetting() {
 
     function recordAction(action) {
         var cost = 0;
+        if(action){
         if (!hasReachedCriticalLevel()) {
             if (action === 'sms') {
 
@@ -46,6 +47,7 @@ module.exports = function BillWithSetting() {
                 timestamp: new Date()
             });    
         }
+    }
     }
 
 
